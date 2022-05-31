@@ -3,7 +3,6 @@ import useArConnect from 'use-arconnect';
 import { Grid, Loading } from '@nextui-org/react';
 import { icons } from '../../static';
 import UserProfile from '../UserProfile';
-//import ctx from '../utils/ctx';
 import { AMW } from '../../utils/api';
 
 
@@ -12,7 +11,7 @@ export function Login() {
   const [addr, setAddr] = useState(null);
   const [walletName, setWalletName] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("Login in component mounted")
+
   useEffect(() => {
     if (!arConnect) return;
     (async () => {
@@ -75,7 +74,7 @@ export function Login() {
           await login.arweaveWebWallet();
           setIsLoading(false);
         }}>
-          <img src={true ? icons.arweaveWebWallet.dark : icons.arweaveWebWallet.light} alt="arweave.app" />
+          <img src={true ? icons.arweaveWebWallet.light : icons.arweaveWebWallet.dark} alt="arweave.app" />
           <h4>arweave.app</h4>
         </div>
       </div>);
