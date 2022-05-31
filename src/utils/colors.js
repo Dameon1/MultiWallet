@@ -1,17 +1,5 @@
 import 'styled-components';
 
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    profile: {
-      username: string;
-      handle: string;
-    };
-    userAction: string;
-    bodyBackground: string;
-    text: string;
-  }
-}
-
 const common = {
   profile: {
     username: '#485aff',
@@ -32,4 +20,4 @@ const dark = {
   text: '#FFFFFF'
 }
 
-export {light, dark};
+export { light, dark };

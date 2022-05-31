@@ -6,17 +6,13 @@ import { protocolName } from '../../static';
 import { BiUserCircle } from 'react-icons/bi';
 
 function EditProfileModal({ addr, profile, isOpen, hasClosed }) {
-  console.log(addr, "addr")
-  console.log(profile, "profile");
-  console.log(isOpen, "isOpen")
-  console.log(hasClosed, "hasClosed")
+
   const [profileData, setProfileData] = useState({
     addr: "",
     links: {},
   });
   const [handleError, setHandleError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [picture, setPicture] = useState(null);
   const [pictureIsLoading, setPictureIsLoading] = useState(false);
 
