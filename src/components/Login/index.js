@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import useArConnect from 'use-arconnect';
 import { Grid, Loading } from '@nextui-org/react';
 import { icons } from '../../static';
+import useArconnect from 'use-arconnect';
 import UserProfile from '../UserProfile';
 import { AMW } from '../../utils/api';
 
 
 export function Login() {
-  const arConnect = useArConnect();
+  const arConnect = useArconnect();
   const [addr, setAddr] = useState(null);
   const [walletName, setWalletName] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -45,11 +45,12 @@ export function Login() {
       setWalletName("bundlr");
     }
   }
+  return (isLoading ? <Loading />
+    //   return (isLoading
+    //     ? <Grid.Container gap={1} justify="center">
+    //       <Loading size="xl" css={{ padding: '$24' }} />
+    //     </Grid.Container>
 
-  return (isLoading
-    ? <Grid.Container gap={1} justify="center">
-      <Loading size="xl" css={{ padding: '$24' }} />
-    </Grid.Container>
     : addr && walletName
       ? <UserProfile addr={addr} walletName={walletName} disconnectWallet={disconnectWallet} />
       : <div className="connection">
@@ -81,4 +82,4 @@ export function Login() {
 
 }
 
-export default Login;
+export default Login; 

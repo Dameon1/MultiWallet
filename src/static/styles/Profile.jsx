@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material';
 import styled from 'styled-components';
-import {transition} from './global';
+import { transition } from './global';
 
 const AvatarS = styled(Avatar)`
   ${transition}
@@ -14,7 +14,7 @@ const AvatarS = styled(Avatar)`
 
 const Box = styled('div')`
   ${transition}
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   padding: 10px 10px 10px 10px;
   margin: auto;
   margin-top: 5px;
@@ -63,7 +63,7 @@ const VertoIDinfo = styled('div')`
 `;
 
 const Name = styled('div')`
-  color: ${({theme}) => theme.profile.username};
+  color: ${({ theme }) => theme.profile.username};
   font-size: xx-large;
   margin-bottom: -7px;
   font-weight: bold;
@@ -81,7 +81,7 @@ const UserAddr = styled('a')`
 const UserSocial = styled('a')`
   ${transition}
   font-family: monospace;
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   margin-right: 20px;
   &:hover {
     color: #1a98ff;

@@ -1,5 +1,5 @@
 import Arweave from 'arweave';
-import ArweaveMultiWallet from '../lib/ArweaveMultiWallet';
+import ArweaveMultiWallet from '../lib/ArweaveMultiWallet.ts';
 
 const arweave = Arweave.init({
   host: 'arweave.net',// Hostname or IP address for a Arweave host
