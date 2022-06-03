@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Grid, Loading } from '@nextui-org/react';
-import { icons } from '../../static';
-import useArconnect from 'use-arconnect';
-import UserProfile from '../UserProfile';
-import { AMW } from '../../utils/api';
+import {useContext, useEffect, useState} from 'react';
+import useArConnect from 'use-arconnect';
+import { icons } from '../static';
+import Profile from './Profile';
+import { T_walletName } from '../utils/types';
+import {Grid, Loading} from '@nextui-org/react';
+import ctx from '../utils/ctx';
+import { AMW } from '../utils/api';
 
-
-export function Login() {
-  const arConnect = useArconnect();
-  const [addr, setAddr] = useState(null);
-  const [walletName, setWalletName] = useState();
+function Login({onClick}: {onClick?: () => void}) {
+  const {theme} = useContext(ctx);
+  const arConnect = useArConnect();
+  const [addr, setaddr] = useState<string | null>(null);
+  const [walletName, setWalletName] = useState<T_walletName>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -17,43 +19,42 @@ export function Login() {
     (async () => {
       try {
         if ((await arConnect.getPermissions()).includes("ACCESS_ADDRESS")) {
-          setAddr(await arConnect.getActiveAddress());
+          setaddr(await arConnect.getActiveAddress());
         }
       } catch {
         alert("Error: Could not get ACCESS_ADDRESS permission");
       }
     })();
-  }, [arConnect, addr, setAddr]);
+  }, [arConnect, addr, setaddr]);
 
   const disconnectWallet = async () => {
     await AMW.disconnect();
-    setAddr(null);
+    setaddr(null);
   };
 
   const login = {
     arconnect: async () => {
-      setAddr(await AMW.connect("arconnect", arConnect));
+      setaddr(await AMW.connect("arconnect", arConnect));
       setWalletName("arconnect");
     },
     arweaveWebWallet: async () => {
-      setAddr(await AMW.connect("webwallet"));
+      setaddr(await AMW.connect("webwallet"));
       setWalletName("webwallet");
     },
     bundlr: async () => {
       console.log("bundlr");
-      setAddr(await AMW.connect("bundlr"));
+      setaddr(await AMW.connect("bundlr"));
       setWalletName("bundlr");
     }
   }
-  return (isLoading ? <Loading />
-    //   return (isLoading
-    //     ? <Grid.Container gap={1} justify="center">
-    //       <Loading size="xl" css={{ padding: '$24' }} />
-    //     </Grid.Container>
 
+  return(isLoading 
+    ? <Grid.Container gap={1} justify="center">
+        <Loading size="xl" css={{padding: '$24'}} />
+      </Grid.Container>
     : addr && walletName
-      ? <UserProfile addr={addr} walletName={walletName} disconnectWallet={disconnectWallet} />
-      : <div className="connection">
+    ? <Profile addr={addr} walletName={walletName} disconnectWallet={disconnectWallet}/>
+    : <div className="connection">
         <div className="wallet" onClick={async () => {
           setIsLoading(true);
           await login.arconnect();
@@ -75,11 +76,10 @@ export function Login() {
           await login.arweaveWebWallet();
           setIsLoading(false);
         }}>
-          <img src={true ? icons.arweaveWebWallet.light : icons.arweaveWebWallet.dark} alt="arweave.app" />
+          <img src={theme ? icons.arweaveWebWallet.dark : icons.arweaveWebWallet.light} alt="arweave.app" />
           <h4>arweave.app</h4>
         </div>
       </div>);
-
 }
 
-export default Login; 
+export default Login;
