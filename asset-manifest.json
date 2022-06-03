@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/MultiWallet/static/css/main.14ecf488.css",
-    "main.js": "/MultiWallet/static/js/main.88794954.js",
+    "main.js": "/MultiWallet/static/js/main.19404830.js",
     "index.html": "/MultiWallet/index.html"
   },
   "entrypoints": [
     "static/css/main.14ecf488.css",
-    "static/js/main.88794954.js"
+    "static/js/main.19404830.js"
   ]
 }
