@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import useArConnect from 'use-arconnect';
 import { icons } from '../../static';
 import Profile from './Profile';
+import Footer from './Footer';
 import { T_walletName } from '../../utils/types';
 import { Grid, Loading } from '@nextui-org/react';
 import ctx from '../../utils/ctx';
@@ -79,6 +80,7 @@ function Login({ onClick }: { onClick?: () => void }) {
           <img src={theme ? icons.arweaveWebWallet.dark : icons.arweaveWebWallet.light} alt="arweave.app" />
           <h4>arweave.app</h4>
         </div>
+        <Footer />
       </div>);
 }
 
