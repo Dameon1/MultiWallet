@@ -1,14 +1,14 @@
-import {useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useArConnect from 'use-arconnect';
-import { icons } from '../static';
+import { icons } from '../../static';
 import Profile from './Profile';
-import { T_walletName } from '../utils/types';
-import {Grid, Loading} from '@nextui-org/react';
-import ctx from '../utils/ctx';
-import { AMW } from '../utils/api';
+import { T_walletName } from '../../utils/types';
+import { Grid, Loading } from '@nextui-org/react';
+import ctx from '../../utils/ctx';
+import { AMW } from '../../utils/api';
 
-function Login({onClick}: {onClick?: () => void}) {
-  const {theme} = useContext(ctx);
+function Login({ onClick }: { onClick?: () => void }) {
+  const { theme } = useContext(ctx);
   const arConnect = useArConnect();
   const [addr, setaddr] = useState<string | null>(null);
   const [walletName, setWalletName] = useState<T_walletName>();
@@ -48,13 +48,13 @@ function Login({onClick}: {onClick?: () => void}) {
     }
   }
 
-  return(isLoading 
+  return (isLoading
     ? <Grid.Container gap={1} justify="center">
-        <Loading size="xl" css={{padding: '$24'}} />
-      </Grid.Container>
+      <Loading size="xl" css={{ padding: '$24' }} />
+    </Grid.Container>
     : addr && walletName
-    ? <Profile addr={addr} walletName={walletName} disconnectWallet={disconnectWallet}/>
-    : <div className="connection">
+      ? <Profile addr={addr} walletName={walletName} disconnectWallet={disconnectWallet} />
+      : <div className="connection">
         <div className="wallet" onClick={async () => {
           setIsLoading(true);
           await login.arconnect();
